@@ -1,0 +1,18 @@
+yml:
+  description: ${app.name} is a spring boot application
+  headers:
+    redelivery: true
+    secure: true
+  javaHome: ${JAVA_HOME}
+  name: MyApp
+  recipients:
+    - recipients0@example.com
+    - recipients1@example.com
+  user:
+    password: password
+    username: jayxu
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
