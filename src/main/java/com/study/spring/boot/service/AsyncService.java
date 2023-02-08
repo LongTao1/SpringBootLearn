@@ -5,7 +5,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -16,6 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class AsyncService {
     private final AtomicLong atomicLong = new AtomicLong();
+
     @Async
     public void testAsync() {
         try {
@@ -24,7 +24,7 @@ public class AsyncService {
             throw new RuntimeException(e);
         }
         String threadName = Thread.currentThread().getName();
-        log.info("service 执行，线程名称:{}", threadName);
+        log.info("service 异步执行，线程名称:{}", threadName);
         long l = atomicLong.incrementAndGet();
         if (l == 5) {
             atomicLong.set(0);
@@ -39,7 +39,7 @@ public class AsyncService {
             throw new RuntimeException(e);
         }
         String threadName = Thread.currentThread().getName();
-        log.info("service 执行，线程名称:{}", threadName);
+        log.info("service 同步执行执行，线程名称:{}", threadName);
     }
 
 }

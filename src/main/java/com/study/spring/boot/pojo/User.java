@@ -16,24 +16,21 @@ import java.io.Serializable;
 @Data
 @Builder
 public class User implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
-
     /**
      *
      */
     private String name;
-
     /**
      *
      */
     private Integer age;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 
     @Override
     public boolean equals(Object that) {
@@ -48,8 +45,8 @@ public class User implements Serializable {
         }
         User other = (User) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-          && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-          && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()));
     }
 
     @Override

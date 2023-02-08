@@ -17,34 +17,29 @@ import java.math.BigDecimal;
 @Data
 @Builder
 public class OrderItem implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
-
     /**
      * 订单id
      */
     private Integer orderId;
-
     /**
      * 商品id
      */
     private Integer productId;
-
     /**
      * 商城名称
      */
     private String productName;
-
     /**
      * 商品价格
      */
     private BigDecimal priductPrice;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 
     @Override
     public boolean equals(Object that) {
@@ -59,10 +54,10 @@ public class OrderItem implements Serializable {
         }
         OrderItem other = (OrderItem) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-          && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
-          && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
-          && (this.getProductName() == null ? other.getProductName() == null : this.getProductName().equals(other.getProductName()))
-          && (this.getPriductPrice() == null ? other.getPriductPrice() == null : this.getPriductPrice().equals(other.getPriductPrice()));
+                && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
+                && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
+                && (this.getProductName() == null ? other.getProductName() == null : this.getProductName().equals(other.getProductName()))
+                && (this.getPriductPrice() == null ? other.getPriductPrice() == null : this.getPriductPrice().equals(other.getPriductPrice()));
     }
 
     @Override

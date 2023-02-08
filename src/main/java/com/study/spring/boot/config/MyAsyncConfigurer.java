@@ -67,7 +67,7 @@ public class MyAsyncConfigurer implements AsyncConfigurer {
             log.info("线程池异常,异常信息:{}", throwable.getMessage());
 
             for (Object object : objects) {
-                log.info("线程池异常,异常对象：{}",object.getClass());
+                log.info("线程池异常,异常对象：{}", object.getClass());
             }
         }
     }

@@ -5,12 +5,13 @@
 <mapper namespace="com.study.spring.boot.mapper.OrderMapper">
 
     <resultMap id="BaseResultMap" type="com.study.spring.boot.pojo.Order">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
-            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+        <result property="amount" column="amount" jdbcType="DECIMAL"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,order_num,amount
+        id
+        ,order_num,amount
     </sql>
 </mapper>

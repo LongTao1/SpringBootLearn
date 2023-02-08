@@ -3,13 +3,11 @@ package com.study.spring.boot.service;
 import com.study.spring.boot.mapper.OrderItemMapper;
 import com.study.spring.boot.mapper.OrderMapper;
 import com.study.spring.boot.mapper.UserMapper;
-import com.study.spring.boot.pojo.Order;
 import com.study.spring.boot.pojo.User;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,9 +45,9 @@ public class TransactionalAndAsyncTestService {
         throw new RuntimeException("自定义异常");*/
 
         User user = User.builder()
-          .name("哈哈1")
-          .age(1213)
-          .build();
+                .name("哈哈1")
+                .age(1213)
+                .build();
         userMapper.insert(user);
         throw new RuntimeException("哈哈哈哈哈异常");
     }

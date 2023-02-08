@@ -1,7 +1,5 @@
 package com.study.spring.boot.controller;
 
-import com.study.spring.boot.service.AsyncService;
-import com.study.spring.boot.service.BatchAsyncService;
 import com.study.spring.boot.service.SameClassInvokeAsyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,6 @@ public class SameClassInvokeAsyncTestController {
         log.info("controller 执行，线程名称:{}", threadName);
         sameClassInvokeAsyncService.callAsync();
     }
-
 
 
 }
