@@ -1,9 +1,9 @@
-package com.study.spring.boot.service.impl;
+package com.study.spring.boot.service.data.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.spring.boot.mapper.OrderMapper;
 import com.study.spring.boot.pojo.Order;
-import com.study.spring.boot.service.OrderService;
+import com.study.spring.boot.service.data.OrderService;
 import org.springframework.stereotype.Service;
 
 /**

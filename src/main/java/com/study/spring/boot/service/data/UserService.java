@@ -1,4 +1,4 @@
-package com.study.spring.boot.service;
+package com.study.spring.boot.service.data;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.study.spring.boot.pojo.User;

@@ -1,9 +1,9 @@
-package com.study.spring.boot.service.impl;
+package com.study.spring.boot.service.data.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.spring.boot.mapper.UserMapper;
 import com.study.spring.boot.pojo.User;
-import com.study.spring.boot.service.UserService;
+import com.study.spring.boot.service.data.UserService;
 import org.springframework.stereotype.Service;
 
 /**

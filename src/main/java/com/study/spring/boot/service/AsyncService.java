@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 @Service
 public class AsyncService {
-    private final AtomicLong atomicLong = new AtomicLong();
+
 
     @Async
     public void testAsync() {
@@ -25,11 +25,6 @@ public class AsyncService {
         }
         String threadName = Thread.currentThread().getName();
         log.info("service 异步执行，线程名称:{}", threadName);
-        long l = atomicLong.incrementAndGet();
-        if (l == 5) {
-            atomicLong.set(0);
-            throw new RuntimeException("自定义异常");
-        }
     }
 
     public void testSync() {

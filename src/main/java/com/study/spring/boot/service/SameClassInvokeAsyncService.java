@@ -20,6 +20,7 @@ public class SameClassInvokeAsyncService {
 
     public void callAsync() {
         async("同类直接调用");
+        log.info("------------------方法调用分隔线----------------");
         SameClassInvokeAsyncService bean = applicationContext.getBean(SameClassInvokeAsyncService.class);
         bean.async("同类但是通过applicationContext来getBean调用");
     }
