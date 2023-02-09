@@ -24,11 +24,11 @@ public class User implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
-     *
+     * 名称
      */
     private String name;
     /**
-     *
+     * 年龄
      */
     private Integer age;
 

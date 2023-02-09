@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 /**
  * @TableName order
  */
-@TableName(value = "order")
+@TableName(value = "`order`")
 @Data
 @Builder
 public class Order implements Serializable {
@@ -27,50 +27,10 @@ public class Order implements Serializable {
     /**
      * 订单号
      */
-    private String orderNum;
+    private String orderNo;
     /**
      * 金额
      */
     private BigDecimal amount;
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Order other = (Order) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getOrderNum() == null ? other.getOrderNum() == null : this.getOrderNum().equals(other.getOrderNum()))
-                && (this.getAmount() == null ? other.getAmount() == null : this.getAmount().equals(other.getAmount()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getOrderNum() == null) ? 0 : getOrderNum().hashCode());
-        result = prime * result + ((getAmount() == null) ? 0 : getAmount().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", orderNum=").append(orderNum);
-        sb.append(", amount=").append(amount);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }
