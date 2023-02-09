@@ -27,13 +27,13 @@ public class AsyncResultService {
         List<User> users = new ArrayList<>(maxSize);
         for (int i = 0; i < maxSize; i++) {
             User build = User.builder()
-                    .name(prefix + "：" + threadName + i)
+                    .name(prefix + "：" + threadName + "：" + i)
                     .age(i)
                     .build();
             users.add(build);
 
         }
-        log.info("执行完成");
+        log.info(threadName + "：执行完成");
         return AsyncResult.forValue(users);
         //其他写法
         //return new AsyncResult<>(users);
