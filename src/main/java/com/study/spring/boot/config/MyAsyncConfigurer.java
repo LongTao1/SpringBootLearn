@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.lang.reflect.Method;
@@ -17,7 +18,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @Configuration
 //EnableAsync可以放在启动类或者这里
-//@EnableAsync
+@EnableAsync
 public class MyAsyncConfigurer implements AsyncConfigurer {
     /**
      * 核心线程数
