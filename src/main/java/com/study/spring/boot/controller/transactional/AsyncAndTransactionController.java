@@ -40,4 +40,19 @@ public class AsyncAndTransactionController {
         log.info("controller 执行，线程名称:{}", threadName);
         asyncAndTransactionalTestService.asyncException();
     }
+
+
+    @GetMapping("/lastMethodException")
+    public void lastMethodException() {
+        String threadName = Thread.currentThread().getName();
+        log.info("controller 执行，线程名称:{}", threadName);
+        asyncAndTransactionalTestService.lastMethodException();
+    }
+
+    @GetMapping("/asyncExceptionInvokeLastMethod")
+    public void asyncExceptionInvokeLastMethod() {
+        String threadName = Thread.currentThread().getName();
+        log.info("controller 执行，线程名称:{}", threadName);
+        asyncAndTransactionalTestService.asyncExceptionInvokeLastMethod();
+    }
 }

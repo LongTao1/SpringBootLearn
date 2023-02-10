@@ -50,8 +50,8 @@ public class AsyncAndTransactionalTestService {
         log.info("当前线程名称:{}", Thread.currentThread().getName());
 
         User user = User.builder()
-                .name("张三")
-                .age(22)
+                .name("异步新增")
+                .age(11)
                 .build();
         userMapper.insert(user);
         throw new RuntimeException("新增数据库异常");
@@ -61,24 +61,34 @@ public class AsyncAndTransactionalTestService {
     @Transactional(rollbackFor = Exception.class)
     public void syncException() {
         AsyncAndTransactionalTestService bean = applicationContext.getBean(this.getClass());
-        bean.addOrder("123", false);
-        bean.addOrderItem("123", false);
-        throw new RuntimeException("自定义异常");
+        bean.addOrder("异步新增", 11, false);
+        bean.addOrderItem("异步新增", 11, false);
+        User user = User.builder()
+                .name("同步新增异常")
+                .age(22)
+                .build();
+        userMapper.insert(user);
+        throw new RuntimeException("新增数据库异常");
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void asyncException() {
         AsyncAndTransactionalTestService bean = applicationContext.getBean(this.getClass());
-        bean.addOrder("456", true);
-        bean.addOrderItem("456", true);
+        bean.addOrder("异步新增异常", 22, true);
+        bean.addOrderItem("异步新增异常", 22, true);
+        User user = User.builder()
+                .name("同步新增")
+                .age(33)
+                .build();
+        userMapper.insert(user);
     }
 
     @Async
     @Transactional(rollbackFor = Exception.class)
-    public void addOrder(String orderNo, boolean exceptionFlag) {
+    public void addOrder(String orderNo, Integer amount, boolean exceptionFlag) {
         Order build = Order.builder()
                 .orderNo(orderNo)
-                .amount(new BigDecimal("98"))
+                .amount(new BigDecimal(amount.toString()))
                 .build();
         orderMapper.insert(build);
         if (exceptionFlag) {
@@ -89,16 +99,59 @@ public class AsyncAndTransactionalTestService {
 
     @Async
     @Transactional(rollbackFor = Exception.class)
-    public void addOrderItem(String orderNo, boolean exceptionFlag) {
+    public void addOrderItem(String orderNo, Integer amount, boolean exceptionFlag) {
         OrderItem build = OrderItem.builder()
                 .orderNo(orderNo)
-                .productId(98)
+                .productId(1)
                 .productName("测试商品")
-                .productPrice(new BigDecimal("98"))
+                .productPrice(new BigDecimal(amount.toString()))
                 .build();
         orderItemMapper.insert(build);
         if (exceptionFlag) {
             throw new RuntimeException("自定义异常");
         }
     }
+
+
+    public void lastMethodException() {
+        AsyncAndTransactionalTestService bean = applicationContext.getBean(this.getClass());
+        bean.invokeLastMethod(false, true);
+        User user = User.builder()
+                .name("调用最后一个方法测试新增")
+                .age(44)
+                .build();
+        userMapper.insert(user);
+    }
+
+    public void asyncExceptionInvokeLastMethod() {
+        AsyncAndTransactionalTestService bean = applicationContext.getBean(this.getClass());
+        bean.invokeLastMethod(true, false);
+        User user = User.builder()
+                .name("调用最后一个方法测试新增")
+                .age(55)
+                .build();
+        userMapper.insert(user);
+    }
+
+
+    @Async
+    @Transactional
+    public void invokeLastMethod(boolean exceptionFlag, boolean lastMethodExceptionFlag) {
+        addOrder("调用最后一个方法前异步新增", 33, false);
+        lastMethod(lastMethodExceptionFlag);
+        if (exceptionFlag) {
+            throw new RuntimeException("异步方法异常");
+        }
+    }
+
+
+    public void lastMethod(boolean exceptionFlag) {
+        addOrderItem("最后调用的方法新增", 33, false);
+        log.info("最后调用的方法");
+        if (exceptionFlag) {
+            throw new RuntimeException("最后调用方法的异常");
+        }
+    }
+
+
 }
